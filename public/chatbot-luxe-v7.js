@@ -184,6 +184,34 @@ function linkify(text) {
   return text.replace(urlRegex, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>');
 }
 
+// Auto-convert URLs to clickable buttons based on domain
+function linkify(text) {
+  return text.replace(/(https?:\/\/[^\s]+)/g, function (url) {
+    let label = "Ouvrir le lien";
+
+    if (url.includes("soloatico.es")) {
+      label = "Voir Solo Ático";
+    } else if (url.includes("wa.me") || url.includes("whatsapp")) {
+      label = "Envoyer un message WhatsApp";
+    } else if (url.includes("maps.google")) {
+      label = "Ouvrir dans Google Maps";
+    } else if (url.startsWith("mailto:")) {
+      label = "Envoyer un email";
+    }
+
+    return `<a href="${url}" target="_blank" rel="noopener noreferrer" style="
+      display:inline-block;
+      background:#0b1c3f;
+      color:#f2e9d8;
+      padding:8px 14px;
+      border-radius:8px;
+      text-decoration:none;
+      font-size:14px;
+      margin-top:6px;
+    ">${label}</a>`;
+  });
+}
+
 function addMessage(text, sender = "bot") {
   const div = document.createElement("div");
   div.className = `msg ${sender}`;
