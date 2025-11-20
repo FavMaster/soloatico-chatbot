@@ -1,0 +1,218 @@
+[
+  {
+    "id": "fr_accueil",
+    "lang": "fr",
+    "url": "https://soloatico.es/FR/accueil",
+    "title": "Accueil — Solo Ático",
+    "raw": "Ático de 350 m² avec vues sur le club nautique, le port et la plage de Riells. Piscine sur le toit, espace détente, ambiance maritime et zen. Expérience d'accueil (Belgique). Licence touristique HUTG-073278-63. Contact +34 621 128 303.",
+    "summary": "Ático de 350 m² avec rooftop piscine, vue port/mer, ambiance zen. Hôtes : Laurent & Sophia. Licence HUTG-073278-63. Contact principal : +34 621 128 303."
+  },
+  {
+    "id": "fr_suites",
+    "lang": "fr",
+    "url": "https://soloatico.es/FR/salles",
+    "title": "Suites — Solo Ático",
+    "raw": "Three guest suites: Neus, Bourlardes, Blue Patio. Each for 2 persons with Queen bed, dressing, private bathroom (shower/bath), terrace/balcony (some with sea view). Amenities: air-conditioning, Wi-Fi, TV, towels, soap/shampoo. Breakfast included. Prices: from 160–165 €/night. Legal license and CGV present.",
+    "summary": "Trois suites (Neus, Bourlardes, Blue Patio) pour 2 personnes : lit Queen, salle de bain privée, dressing, Wi-Fi, petit-déjeuner compris. Tarifs à partir d’environ 160–165 €/nuit."
+  },
+  {
+    "id": "fr_tintorera",
+    "lang": "fr",
+    "url": "https://soloatico.es/FR/tintorera",
+    "title": "Tintorera (bateau)",
+    "raw": "Llaut catalan traditionnel 'Tintorera' — longueur 6.56 m, largeur 2.38 m, tirant d'eau 0.68 m, poids ~3 tonnes, moteur Solé 41 CV. Capacité 4 personnes. Tarifs: 100 €/heure (première heure), 50 €/heure supplémentaires. Example: 2h = 150 €, 3h = 200 €.",
+    "summary": "Tintorera : llaut traditionnel 6,56 m (motor Solé 41 CV), capacité 4 pers. Tarifs : 100 €/h pour la première heure, puis 50 €/h par heure supplémentaire."
+  },
+  {
+    "id": "fr_reiki",
+    "lang": "fr",
+    "url": "https://soloatico.es/FR/reiki",
+    "title": "Soins Reiki",
+    "raw": "Soins par Sophia : Massage relaxant aux pierres chaudes 45 min — 75 €. Traitement Reiki + pierres chaudes 90 min — 125 €. Réserver en même temps que la chambre est encouragé.",
+    "summary": "Soins proposés par Sophia : massage pierres chaudes (45 min — 75 €) et combo Reiki + pierres chaudes (90 min — 125 €). Réservation conseillée lors de la réservation de la suite."
+  },
+  {
+    "id": "fr_quefaire",
+    "lang": "fr",
+    "url": "https://soloatico.es/FR/quefaire",
+    "title": "Que faire — Activités",
+    "raw": "Activités locales (rayon ~40 km) : Ruines d'Empúries, Sant Martí d'Empúries, Musée Dalí (Figueres), Château de Montgrí, plages de Riells, sports nautiques (kayak, paddle, plongée), Parc Natural Montgrí et Illes Medes, Aiguamolls de l'Empordà, villages médiévaux (Pals, Peratallada), vins & anchois locaux, golf, équitation.",
+    "summary": "Idées d'activités : visites culturelles (Empúries, Dalí), plages & sports nautiques, randonnées (Montgrí / Illes Medes), villages médiévaux (Pals, Peratallada), gastronomie locale et vignobles."
+  },
+  {
+    "id": "fr_contact",
+    "lang": "fr",
+    "url": "https://soloatico.es/FR/contact",
+    "title": "Contact — Solo Ático (FR)",
+    "raw": "Adresse: Carrer Romeu de Corbera, 17130 L'Escala, Catalunya. Hôtes : Laurent & Sophia. Téléphone: +34 621 128 303. Email: info@soloatico.es. Préférence: WhatsApp.",
+    "summary": "Contact : Laurent & Sophia — +34 621 128 303, info@soloatico.es. Adresse : Carrer Romeu de Corbera, 17130 L'Escala. Préférence WhatsApp."
+  },
+  {
+    "id": "es_inicio",
+    "lang": "es",
+    "url": "https://soloatico.es/",
+    "title": "Inicio — Solo Ático",
+    "raw": "Ático con piscina en la azotea, vistas al puerto y playa, alojamiento premium, contacto +34 621 128 303, licencia HUTG-073278-63.",
+    "summary": "Ático de lujo con rooftop pool y vistas al puerto. Contacto principal: +34 621 128 303."
+  },
+  {
+    "id": "es_nosotros",
+    "lang": "es",
+    "url": "https://soloatico.es/es/nosotros",
+    "title": "Nosotros",
+    "raw": "Información sobre los anfitriones, experiencia en hospitalidad internacional (Bélgica), misión y filosofía de servicio.",
+    "summary": "Información sobre los anfitriones (Laurent & Sophia) y su experiencia en hostelería, base del proyecto Solo Ático."
+  },
+  {
+    "id": "es_suites",
+    "lang": "es",
+    "url": "https://soloatico.es/es/suites",
+    "title": "Habitaciones / Suites",
+    "raw": "Suites Neus, Bourlardes, Blue Patio. Comodidades: cama Queen, baño (ducha/bañera), vestidor, terraza privada en algunas, Wi-Fi, TV, desayuno incluido. Tarifas desde 160–165 €/noche.",
+    "summary": "Tres suites con comodidades premium y desayuno incluido. Precios desde ~160–165 €/noche."
+  },
+  {
+    "id": "es_tintorera",
+    "lang": "es",
+    "url": "https://soloatico.es/es/tintorera-1",
+    "title": "Tintorera (ES)",
+    "raw": "Llaut tradicional 6,56 m, motor 41 CV, capacidad 4 personas. Tarifas: 100€/h (1ª hora) + 50€/h adicionales.",
+    "summary": "Tintorera: embarcación tradicional, 100€/hora primera hora, 50€/h horas extra. Capacidad 4 personas."
+  },
+  {
+    "id": "es_reiki",
+    "lang": "es",
+    "url": "https://soloatico.es/es/tratamiento-reiki",
+    "title": "Reiki (ES)",
+    "raw": "Masaje relajante con piedras calientes 45 min (75 €). Tratamiento Reiki + piedras calientes 90 min (125 €). Reserve junto con la habitación.",
+    "summary": "Masaje 45 min (75 €) y Reiki + piedras calientes 90 min (125 €). Reserva recomendada con la habitación."
+  },
+  {
+    "id": "es_contacto",
+    "lang": "es",
+    "url": "https://soloatico.es/es/contacto",
+    "title": "Contacto (ES)",
+    "raw": "Teléfono +34 621 128 303, email info@soloatico.es. Preferencia por WhatsApp. Dirección y formas de contacto disponibles en la web.",
+    "summary": "Contacto: +34 621 128 303, info@soloatico.es (WhatsApp preferido)."
+  },
+  {
+    "id": "nl_startpagina",
+    "lang": "nl",
+    "url": "https://soloatico.es/nl/startpagina",
+    "title": "Startpagina (NL)",
+    "raw": "Atico met dakterras zwembad, uitzicht op de haven en zee. Luxe accommodatie in L'Escala. Contactinformatie op de site.",
+    "summary": "Luxury ático met rooftop zwembad en zeezicht; contact via +34 621 128 303."
+  },
+  {
+    "id": "nl_suites",
+    "lang": "nl",
+    "url": "https://soloatico.es/nl/suites2",
+    "title": "Suites (NL)",
+    "raw": "Suites Neus, Bourlardes en Blue Patio met Queen bed, badkamer en ontbijt inbegrepen.",
+    "summary": "Drie suites met comfortabele voorzieningen en ontbijt inbegrepen."
+  },
+  {
+    "id": "nl_tintorera",
+    "lang": "nl",
+    "url": "https://soloatico.es/nl/Tintorera",
+    "title": "Tintorera (NL)",
+    "raw": "Traditionele llaut-boot, details en tarieven op de pagina.",
+    "summary": "Llaut-boot met tarieven: 100€/h eerste uur, 50€/h extra."
+  },
+  {
+    "id": "nl_reiki",
+    "lang": "nl",
+    "url": "https://soloatico.es/nl/reiki-behandelingen",
+    "title": "Reiki-behandelingen (NL)",
+    "raw": "Reiki en hot-stone massages: 45 minuten (75€), 90 minuten (125€).",
+    "summary": "Reiki en hot-stone: 45min = 75€, 90min = 125€."
+  },
+  {
+    "id": "nl_contact",
+    "lang": "nl",
+    "url": "https://soloatico.es/nl/contact",
+    "title": "Contact (NL)",
+    "raw": "Contactgegevens en voorkeur voor WhatsApp vermeld op de site.",
+    "summary": "Contact: telefoon en e-mail, WhatsApp recommended."
+  },
+  {
+    "id": "cat_benvingut",
+    "lang": "cat",
+    "url": "https://soloatico.es/cat/benvingut",
+    "title": "Benvingut (CAT)",
+    "raw": "Àtic amb piscina a la coberta, vistes al port i a la platja, allotjament de qualitat, contacte +34 621 128 303.",
+    "summary": "Àtic de luxe amb rooftop pool i vistes; contacte +34 621 128 303."
+  },
+  {
+    "id": "cat_dormitoris",
+    "lang": "cat",
+    "url": "https://soloatico.es/cat/dormitoris",
+    "title": "Dormitoris (CAT)",
+    "raw": "Informació sobre les suites disponibles amb serveis i esmorzar inclòs.",
+    "summary": "Suites amb esmorzar inclòs i serveis premium."
+  },
+  {
+    "id": "cat_tintorera",
+    "lang": "cat",
+    "url": "https://soloatico.es/cat/tintorera-1",
+    "title": "Tintorera (CAT)",
+    "raw": "Informació sobre el llaut i tarifes disponibles a la pàgina.",
+    "summary": "Llaut tradicional: 100€/h primera hora, 50€/h hora extra."
+  },
+  {
+    "id": "cat_reiki",
+    "lang": "cat",
+    "url": "https://soloatico.es/cat/reiki-1",
+    "title": "Reiki (CAT)",
+    "raw": "Tractaments de Reiki i massatges amb pedres calentes, durades i preus a la pàgina.",
+    "summary": "Reiki i massatges amb pedres: detalls i preus a la pàgina."
+  },
+  {
+    "id": "cat_contacte",
+    "lang": "cat",
+    "url": "https://soloatico.es/cat/contacte",
+    "title": "Contacte (CAT)",
+    "raw": "Telèfon +34 621 128 303, email info@soloatico.es, preferència WhatsApp.",
+    "summary": "Tel. +34 621 128 303 i info@soloatico.es. Contacte per WhatsApp recomanat."
+  },
+  {
+    "id": "en_home",
+    "lang": "en",
+    "url": "https://soloatico.es/uk/home",
+    "title": "Home (EN)",
+    "raw": "Luxury penthouse with rooftop pool, sea views, boat trips (Tintorera). Contact +34 621 128 303. Booking via Amenitiz.",
+    "summary": "Luxury penthouse with rooftop pool and sea views. Contact +34 621 128 303. Reserve via the Amenitiz booking link."
+  },
+  {
+    "id": "en_suites",
+    "lang": "en",
+    "url": "https://soloatico.es/uk/suites",
+    "title": "Suites (EN)",
+    "raw": "Neus, Bourlardes, Blue Patio: queen bed, private bathroom, dressing, breakfast included, amenities listed on site.",
+    "summary": "Three guest suites with queen beds and private bathrooms; breakfast included. See site for details and booking."
+  },
+  {
+    "id": "en_tintorera",
+    "lang": "en",
+    "url": "https://soloatico.es/uk/tintorera-1",
+    "title": "Tintorera (EN)",
+    "raw": "Traditional Catalan llaut boat with capacity for 4; rates: 100€/hour first hour, 50€/hour thereafter.",
+    "summary": "Traditional llaut boat — 100€/h first hour, 50€/h extra hours; capacity 4."
+  },
+  {
+    "id": "en_reiki",
+    "lang": "en",
+    "url": "https://soloatico.es/uk/reiki",
+    "title": "Reiki (EN)",
+    "raw": "Reiki treatments and hot-stone massages (45m/75€, 90m/125€).",
+    "summary": "Reiki & hot-stone: 45 min = 75€, 90 min = 125€."
+  },
+  {
+    "id": "en_contact",
+    "lang": "en",
+    "url": "https://soloatico.es/uk/contact-1",
+    "title": "Contact (EN)",
+    "raw": "Contact info: info@soloatico.es, +34 621 128 303. WhatsApp preferred.",
+    "summary": "Contact: info@soloatico.es and +34 621 128 303 (WhatsApp preferred)."
+  }
+]
