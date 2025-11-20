@@ -178,13 +178,25 @@
        LOGIQUE CHATBOT
   -------------------------- */
 
-  function addMessage(text, sender = "bot") {
-    const div = document.createElement("div");
-    div.className = `msg ${sender}`;
+ // Auto-convert URLs to clickable links
+function linkify(text) {
+  const urlRegex = /(https?:\/\/[^\s]+)/g;
+  return text.replace(urlRegex, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>');
+}
+
+function addMessage(text, sender = "bot") {
+  const div = document.createElement("div");
+  div.className = `msg ${sender}`;
+
+  if (sender === "user") {
     div.textContent = text;
-    messages.appendChild(div);
-    messages.scrollTop = messages.scrollHeight;
+  } else {
+    div.innerHTML = linkify(text);
   }
+
+  messages.appendChild(div);
+  messages.scrollTop = messages.scrollHeight;
+}
 
   async function sendMessage() {
     const text = input.value.trim();
