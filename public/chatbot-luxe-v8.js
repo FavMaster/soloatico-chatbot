@@ -241,4 +241,109 @@
   const send = document.getElementById("soloia-chat-send");
 
 
+
+  /* -------------------------
+       SCRIPT LOGIC — injected fix
+  -------------------------- */
+  function linkifyButtons(text) {
+    return text.replace(/(https?:\/\/[^\s]+)/g, function (url) {
+      var label = "Ouvrir le lien";
+      if (url.indexOf("soloatico.es") !== -1) label = "Voir Solo Ático";
+      else if (url.indexOf("wa.me") !== -1 || url.indexOf("whatsapp") !== -1)
+        label = "Envoyer un message WhatsApp";
+      else if (url.indexOf("maps.google") !== -1)
+        label = "Ouvrir dans Google Maps";
+      else if (url.indexOf("mailto:") === 0)
+        label = "Envoyer un email";
+      return '<a class="link-btn" href="' + url + '" target="_blank" rel="noopener noreferrer">' + label + '</a>';
+    });
+  }
+
+  function escapeHtml(unsafe) {
+    return unsafe
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  function renderBotMessageHTML(text) {
+    return linkifyButtons(escapeHtml(text)).replace(/\n/g, "<br>");
+  }
+
+  function addMessage(text, sender) {
+    if (!sender) sender = "bot";
+    var row = document.createElement("div");
+    row.className = "msg-row " + sender;
+    if (sender === "bot") {
+      var avatarWrap = document.createElement("div");
+      avatarWrap.className = "msg-avatar";
+      var img = document.createElement("img");
+      img.src = AVATAR_IMAGE_URL;
+      avatarWrap.appendChild(img);
+      var bubble = document.createElement("div");
+      bubble.className = "msg bot";
+      bubble.innerHTML = renderBotMessageHTML(text);
+      row.appendChild(avatarWrap);
+      row.appendChild(bubble);
+    } else {
+      var bubbleUser = document.createElement("div");
+      bubbleUser.className = "msg user";
+      bubbleUser.textContent = text;
+      row.appendChild(bubbleUser);
+    }
+    messages.appendChild(row);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  async function sendMessage() {
+    var text = input.value.trim();
+    if (!text) return;
+    addMessage(text, "user");
+    input.value = "";
+    var lang = navigator.language ? navigator.language.slice(0,2) : 'en';
+    try {
+      var response = await fetch(API_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ user_message: text, visitor_lang: lang })
+      });
+      var data = await response.json();
+      if (data.reply) addMessage(data.reply, "bot");
+      else addMessage("Désolé, une erreur est survenue.", "bot");
+    } catch (e) {
+      addMessage("Erreur de connexion au serveur.", "bot");
+    }
+  }
+
+  // Attach events
+  if (typeof send !== "undefined" && send) {
+    send.onclick = sendMessage;
+  } else {
+    console.warn("send button not found");
+  }
+  if (typeof input !== "undefined" && input) {
+    input.addEventListener("keypress", function (e) {
+      if (e.key === "Enter") sendMessage();
+    });
+  }
+
+  if (typeof btn !== "undefined" && btn) {
+    btn.addEventListener("click", function () {
+      if (typeof win === "undefined" || !win) {
+        // try to get it again
+        window.win = document.getElementById("soloia-chat-window");
+      }
+      if (win) win.classList.toggle("open");
+      // welcome message only on first open
+      if (win && win.classList.contains("open") && messages.children.length === 0) {
+        addMessage("Bonjour 👋<br>Je suis <b>Solo’IA’tico Assistant</b>, votre concierge digital.<br><br>Comment puis-je vous aider aujourd’hui ?", "bot");
+      }
+    });
+  } else {
+    console.warn("btn not found");
+  }
+
+
 })();
