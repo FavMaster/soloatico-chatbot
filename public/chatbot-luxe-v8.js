@@ -4,7 +4,7 @@
 
 (function () {
   const HEADER_IMAGE_URL = "https://soloatico.es/header.jpg";
-  const AVATAR_IMAGE_URL = "https://soloatico.es/avatar.png";
+  const AVATAR_IMAGE_URL = "https://soloatico.es/avatar.jpg";
   const API_URL = "https://soloatico-chatbot.vercel.app/api/chat_rag";
 
   /* -------------------------
@@ -96,7 +96,6 @@
       height:48px;
       border-radius:10px;
       overflow:hidden;
-      background:rgba(255,255,255,0.08);
     }
 
     #soloia-chat-header .avatar img {
@@ -184,7 +183,7 @@
   document.head.appendChild(style);
 
   /* -------------------------
-       HTML STRUCTURE
+       HTML
   -------------------------- */
   const btn = document.createElement("div");
   btn.id = "soloia-chat-btn";
@@ -214,7 +213,7 @@
   const input = document.getElementById("soloia-chat-input");
   const send = document.getElementById("soloia-chat-send");
   /* -------------------------
-       LOGIQUE DU CHATBOT — V8
+       LOGIQUE CHATBOT — V8
   -------------------------- */
 
   function linkifyButtons(text) {
@@ -236,9 +235,8 @@
       .replace(/>/g, "&gt;");
   }
 
-function renderBotMessage(text) {
-  return linkifyButtons(text).replace(/\n/g, "<br>");
-}
+  function renderBotMessage(text) {
+    return linkifyButtons(text).replace(/\n/g, "<br>");
   }
 
   function addMessage(text, sender = "bot") {
