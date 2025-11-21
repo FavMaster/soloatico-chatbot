@@ -1,5 +1,5 @@
 /* ============================================================
-   SOLO'IA'TICO GUIDE — LUXURY CONCIERGE CHATBOT (V8)
+   SOLO'IA'TICO GUIDE FAV — LUXURY CONCIERGE CHATBOT (V8)
    ============================================================ */
 
 (function () {
