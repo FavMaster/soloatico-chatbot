@@ -3,12 +3,12 @@
    ============================================================ */
 
 (function () {
-  const HEADER_IMAGE_URL = "https://soloatico.es/header.jpg";
-  const AVATAR_IMAGE_URL = "https://soloatico.es/avatar.jpg";
+  const HEADER_IMAGE_URL = "/header.jpg";
+  const AVATAR_IMAGE_URL = "/avatar.jpg";
   const API_URL = "https://soloatico-chatbot.vercel.app/api/chat_rag";
 
   /* -------------------------
-       STYLE GLOBAL (CSS V8)
+       STYLE GLOBAL — V8
   -------------------------- */
   const style = document.createElement("style");
   style.innerHTML = `
@@ -29,6 +29,11 @@
       z-index: 9999999;
     }
     #soloia-chat-btn:hover { transform: scale(1.06); }
+    #soloia-chat-btn svg {
+      width: 34px;
+      height: 34px;
+      stroke: #f2e9d8;
+    }
 
     #soloia-chat-window {
       position: fixed;
@@ -61,44 +66,43 @@
       background-image: url('${HEADER_IMAGE_URL}');
       background-size: cover;
       background-position: center;
+      position: relative;
       display: flex;
       align-items: flex-end;
       justify-content: center;
       color: #fff;
-      position: relative;
     }
 
     #soloia-chat-header::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.42) 100%);
-    }
-
-    #soloia-chat-header .avatar {
-      position: absolute;
-      left: 14px;
-      bottom: 14px;
-      width: 48px;
-      height: 48px;
-      border-radius: 10px;
-      overflow: hidden;
-      z-index: 3;
-    }
-
-    #soloia-chat-header .avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.42));
     }
 
     #soloia-chat-header .title {
-      position: relative;
-      z-index: 3;
-      padding-bottom: 12px;
-      font-size: 20px;
-      font-weight: 700;
-      text-shadow: 0 2px 6px rgba(0,0,0,0.45);
+      position:relative;
+      z-index:2;
+      font-size:20px;
+      font-weight:700;
+      padding-bottom:14px;
+    }
+
+    #soloia-chat-header .avatar {
+      position:absolute;
+      left:14px;
+      bottom:12px;
+      width:48px;
+      height:48px;
+      border-radius:10px;
+      overflow:hidden;
+      background:rgba(255,255,255,0.08);
+    }
+
+    #soloia-chat-header .avatar img {
+      width:100%;
+      height:100%;
+      object-fit:cover;
     }
 
     #soloia-chat-messages {
@@ -109,69 +113,78 @@
     }
 
     .msg-row {
-      display: flex;
-      margin-bottom: 12px;
+      display:flex;
+      margin-bottom:12px;
     }
     .msg-row.user {
-      justify-content: flex-end;
+      justify-content:flex-end;
     }
 
     .msg {
-      max-width: 78%;
-      padding: 10px 14px;
-      border-radius: 12px;
-      font-size: 14px;
-      line-height: 1.35;
-      word-wrap: break-word;
+      max-width:78%;
+      padding:10px 14px;
+      border-radius:12px;
+      font-size:14px;
     }
     .msg.bot {
-      background: #eaf2fb;
-      color: #152033;
-      border-bottom-left-radius: 6px;
+      background:#eaf2fb;
+      color:#152033;
+      border-bottom-left-radius:6px;
     }
     .msg.user {
-      background: #0b1c3f;
-      color: #fff;
-      border-bottom-right-radius: 6px;
+      background:#0b1c3f;
+      color:#fff;
+      border-bottom-right-radius:6px;
     }
 
     .msg-avatar {
-      width: 36px;
-      height: 36px;
-      border-radius: 8px;
-      margin-right: 10px;
-      overflow: hidden;
+      width:36px;
+      height:36px;
+      border-radius:8px;
+      overflow:hidden;
+      margin-right:10px;
     }
 
     #soloia-chat-input-area {
-      display: flex;
-      padding: 10px;
-      border-top: 1px solid #eee;
-      background: #fff;
+      display:flex;
+      padding:10px;
+      border-top:1px solid #eee;
+      background:#fff;
     }
     #soloia-chat-input {
-      flex: 1;
-      border: 1px solid #ddd;
-      border-radius: 10px;
-      padding: 10px;
+      flex:1;
+      border:1px solid #ddd;
+      border-radius:10px;
+      padding:10px;
     }
     #soloia-chat-send {
-      margin-left: 8px;
-      background: #0b1c3f;
-      color: #f2e9d8;
-      padding: 8px 14px;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
+      margin-left:8px;
+      background:#0b1c3f;
+      color:#f2e9d8;
+      padding:8px 14px;
+      border:none;
+      border-radius:10px;
+      cursor:pointer;
     }
     #soloia-chat-send:hover {
-      background: #15316c;
+      background:#15316c;
+    }
+
+    .link-btn {
+      display:inline-block;
+      background:#0b1c3f;
+      color:#f2e9d8;
+      padding:8px 12px;
+      border-radius:8px;
+      margin-top:8px;
+      text-decoration:none;
+      font-size:13px;
     }
   `;
   document.head.appendChild(style);
 
   /* -------------------------
-       HTML DU WIDGET
+       HTML STRUCTURE
   -------------------------- */
   const btn = document.createElement("div");
   btn.id = "soloia-chat-btn";
@@ -201,18 +214,18 @@
   const input = document.getElementById("soloia-chat-input");
   const send = document.getElementById("soloia-chat-send");
   /* -------------------------
-       LOGIQUE DU CHATBOT (JS)
+       LOGIQUE DU CHATBOT — V8
   -------------------------- */
 
   function linkifyButtons(text) {
     return text.replace(/(https?:\/\/[^\s]+)/g, function (url) {
       let label = "Ouvrir le lien";
 
-      if (url.includes("soloatico.es")) label = "Visiter Solo Ático";
-      if (url.includes("wa.me")) label = "Contacter sur WhatsApp";
-      if (url.includes("maps.google")) label = "Ouvrir dans Google Maps";
+      if (url.includes("soloatico.es")) label = "Voir Solo Ático";
+      if (url.includes("wa.me")) label = "WhatsApp";
+      if (url.includes("maps.google")) label = "Google Maps";
 
-      return `<a href="${url}" target="_blank" class="link-btn">${label}</a>`;
+      return `<a class="link-btn" href="${url}" target="_blank">${label}</a>`;
     });
   }
 
@@ -271,6 +284,7 @@
 
       const data = await response.json();
       if (data.reply) addMessage(data.reply, "bot");
+      else addMessage("Désolé, une erreur est survenue.", "bot");
 
     } catch (err) {
       addMessage("Erreur de connexion au serveur.", "bot");
@@ -278,7 +292,8 @@
   }
 
   send.onclick = sendMessage;
-  input.addEventListener("keypress", e => {
+
+  input.addEventListener("keypress", (e) => {
     if (e.key === "Enter") sendMessage();
   });
 
@@ -291,5 +306,4 @@
       );
     }
   };
-
 })();
