@@ -3,8 +3,8 @@
    ============================================================ */
 
 (function () {
-  const HEADER_IMAGE_URL = "/header.jpg";
-  const AVATAR_IMAGE_URL = "/avatar.jpg";
+  const HEADER_IMAGE_URL = "https://soloatico.es/header.jpg";
+  const AVATAR_IMAGE_URL = "https://soloatico.es/avatar.png";
   const API_URL = "https://soloatico-chatbot.vercel.app/api/chat_rag";
 
   /* -------------------------
@@ -236,8 +236,9 @@
       .replace(/>/g, "&gt;");
   }
 
-  function renderBotMessage(text) {
-    return linkifyButtons(escapeHtml(text)).replace(/\n/g, "<br>");
+function renderBotMessage(text) {
+  return linkifyButtons(text).replace(/\n/g, "<br>");
+}
   }
 
   function addMessage(text, sender = "bot") {
