@@ -1,0 +1,118 @@
+{
+  "galleries": [
+    {
+      "album": "Logos",
+      "base_url": "https://soloatico.es/gallery/logos/",
+      "images": [
+        "soloatico-logo-blanc.png",
+        "soloatico-logo-bleu.png"
+      ]
+    },
+    {
+      "suite": "Neus",
+      "base_url": "https://soloatico.es/gallery/neus/",
+      "images": [
+        "Suite-Neus/Neus-Vue-Suite-7.jpg",
+        "Suite-Neus/Neus-Salle-de-bain.jpeg",
+        "Suite-Neus/Neus-Douche-vue-mer.jpeg",
+        "Suite-Neus/Neus-Vue-Suite-6.jpeg",
+        "Suite-Neus/Neus-Vue-Lit-Suite-1.jpeg",
+        "Suite-Neus/Neus-Vue-Suite-5.jpeg",
+        "Suite-Neus/Neus-Vue-Suite-4.jpeg",
+        "Suite-Neus/Neus-Baignoire-Vue-Mer-2.jpg",
+        "Suite-Neus/Neus-Baignoire-Vue-Mer-1.jpeg"
+      ]
+    },
+    {
+      "suite": "Bourlardes",
+      "base_url": "https://soloatico.es/gallery/bourlardes/",
+      "images": [
+        "Bourlardes-Lit-1.JPG",
+        "Bourlardes-vue-1.JPG",
+        "Bourlardes-Lit-2.jpg",
+        "Bourlardes-Lit-3.jpeg",
+        "Bourlardes-vue-2.jpeg",
+        "Bourlardes-vue-3.jpeg",
+        "Bourlardes-vue-4.jpeg",
+        "Bourlardes-vue-vert-1.jpeg",
+        "Bourlardes-vue-5.jpeg",
+        "Bourlardes-vue-mer.JPG",
+        "Bourlardes-bain-0.JPG"
+      ]
+    },
+    {
+      "suite": "Blue Patio",
+      "base_url": "https://soloatico.es/gallery/blue-patio/",
+      "images": [
+        "Blue-Patio-Hall-1.jpg",
+        "Blue-Patio-Hall-2.jpg",
+        "Blue-Patio-Lit-1.jpg",
+        "Blue-Patio-Lit-2.jpg",
+        "Blue-Patio-Lit-3.jpg",
+        "Blue-Patio-Salle-de-bain-1.jpg",
+        "Blue-Patio-Salle-de-bain-2.jpg"
+      ]
+    },
+    {
+      "album": "Tintorera",
+      "base_url": "https://soloatico.es/gallery/tintorera/",
+      "images": [
+        "Tintorera-2.jpeg",
+        "Tintorera-5.JPG",
+        "Tintorera-7.JPG",
+        "Tintorera-3.jpeg",
+        "Tintorera-6.JPG",
+        "Tintorera-11.JPG",
+        "Tintorera-10.jpg",
+        "Tintorera-0-Capitaine.jpeg",
+        "Tintorera-8.JPG",
+        "Tintorera-9.jpg",
+        "Tintorera-1.jpeg"
+      ]
+    },
+    {
+      "album": "Piscine-Rooftop",
+      "base_url": "https://soloatico.es/gallery/piscine-rooftop/",
+      "images": [
+        "Piscine-1.jpg",
+        "Piscine-2.jpg",
+        "Piscine-3.jpg",
+        "Piscine-4.jpg",
+        "Piscine-5.jpg",
+        "Piscine-6.JPG",
+        "Piscine-7.jpg",
+        "Piscine-8.jpg",
+        "Piscine-9.jpg"
+      ]
+    },
+    {
+      "album": "Vue-Port-Environnement",
+      "base_url": "https://soloatico.es/gallery/vue-port-environnement/",
+      "images": [
+        "Mola-Mercat.jpg",
+        "Naucli-Escala.jpeg",
+        "Port-Escala-1.jpg",
+        "Port-Escala-2.jpg",
+        "Port-Escala-3.JPG",
+        "Port-Escala-4.JPG",
+        "Port-Escala-5.JPG",
+        "Port-Escala-6.JPG",
+        "Port-Escala-7.JPG",
+        "Port-Escala-9.jpg",
+        "Reserve-Naturelle.JPG",
+        "SoloAtico-Vue-mer-1.jpeg",
+        "SoloAtico-Vue-mer-2.jpeg",
+        "SoloAtico-Vue-mer-3.jpeg",
+        "SoloAtico-Vue-mer-4.jpeg"
+      ]
+    },
+    {
+      "album": "Reiki",
+      "base_url": "https://soloatico.es/gallery/reiki/",
+      "images": [
+        "Logo-Reiko.jpg"
+      ]
+    }
+  ]
+}
+Gallery.json
