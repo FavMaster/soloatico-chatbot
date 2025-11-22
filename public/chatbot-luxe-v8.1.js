@@ -1,5 +1,5 @@
 /* ============================================================
-   SOLO'IA'TICO GUIDE — LUXURY CONCIERGE CHATBOT (V8.1)
+   SOLO'IA'TICO GUIDE — LUXURY CONCIERGE CHATBOT (V8.1 FIXE)
    ============================================================ */
 
 (function () {
@@ -29,11 +29,13 @@
       z-index: 9999999;
       animation: soloia-pulse 3s ease-in-out infinite;
     }
+
     @keyframes soloia-pulse {
       0% { transform: scale(1); }
       50% { transform: scale(1.05); }
       100% { transform: scale(1); }
     }
+
     #soloia-chat-btn:hover { transform: scale(1.08); }
 
     #soloia-chat-btn svg {
@@ -153,7 +155,11 @@
       overflow:hidden;
       margin-right:10px;
     }
-    .msg-avatar img { width:100%; height:100%; object-fit:cover; }
+    .msg-avatar img {
+      width:100%;
+      height:100%;
+      object-fit:cover;
+    }
 
     #soloia-chat-input-area {
       display:flex;
@@ -250,10 +256,7 @@
   }
 
   function escapeHtml(str) {
-    return str
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;");
+    return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
   }
 
   function renderBotMessage(text) {
@@ -263,6 +266,7 @@
   /* ---------------------------
        AFFICHAGE DES MESSAGES
   ---------------------------- */
+
   function addMessage(text, sender = "bot") {
     const row = document.createElement("div");
     row.className = `msg-row ${sender}`;
@@ -277,7 +281,7 @@
       bubble.innerHTML = renderBotMessage(text);
 
       row.appendChild(avatar);
-      row.appendappendChild(bubble);
+      row.appendChild(bubble); // FIXED
     } else {
       const bubble = document.createElement("div");
       bubble.className = "msg user";
@@ -292,6 +296,7 @@
   /* ---------------------------
        ENVOI DU MESSAGE — API
   ---------------------------- */
+
   async function sendMessage() {
     const text = input.value.trim();
     if (!text) return;
@@ -327,6 +332,7 @@
   /* ---------------------------
         OUVERTURE / MESSAGE
   ---------------------------- */
+
   btn.onclick = () => {
     win.classList.toggle("open");
 
