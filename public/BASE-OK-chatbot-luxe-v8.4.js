@@ -287,49 +287,7 @@
     inputEl.disabled = true;
     sendBtn.disabled = true;
     // small UX delay and typing indicator
-    // Détection simple de la langue à partir du texte utilisateur (client-side fallback)
-    function detectLangFromText(text) {
-      if (!text || typeof text !== "string") return null;
-      const t = text.toLowerCase();
-
-      const stopwords = {
-        en: ["the","and","is","you","hello","please","thank","thanks","what","where","when","how"],
-        fr: ["le","la","les","et","est","vous","bonjour","svp","s'il","merci","quand","où","comment"],
-        es: ["el","la","y","es","usted","hola","por","favor","gracias","cuando","dónde","cómo"],
-        it: ["il","la","e","è","tu","ciao","per","favore","grazie","quando","dove","come"],
-        de: ["der","die","und","ist","du","hallo","bitte","danke","wann","wo","wie"]
-      };
-
-      const scores = {};
-      for (const l of Object.keys(stopwords)) scores[l] = 0;
-
-      // tokenisation basique
-      const tokens = t.split(/\W+/).filter(Boolean);
-      for (const tok of tokens) {
-        for (const l of Object.keys(stopwords)) {
-          if (stopwords[l].includes(tok)) scores[l] += 1;
-        }
-      }
-
-      // Choisir la langue avec le score le plus élevé,
-      // sinon fallback sur la langue du navigateur.
-      let best = null;
-      let bestScore = 0;
-      for (const l of Object.keys(scores)) {
-        if (scores[l] > bestScore) { bestScore = scores[l]; best = l; }
-      }
-      if (bestScore >= 1) return best; // au moins 1 hit -> confiance basique
-      // fallback: navigator.language -> "fr" si absent
-      try {
-        const nav = (navigator.language || navigator.userLanguage || "fr").slice(0,2).toLowerCase();
-        if (["en","fr","es","it","de"].includes(nav)) return nav;
-      } catch (e) {}
-      return "fr";
-    }
-
-    // detect language from the message text
-    const detectedLang = detectLangFromText(text);
-    const lang = detectedLang || ((navigator.language || "fr").slice(0,2).toLowerCase());
+    const lang = (navigator.language || "fr").slice(0,2);
     // show a small ephemeral typing bubble
     const typingRow = el("div", { class: "msg-row bot" }, []);
     typingRow.innerHTML = `<div class="msg-avatar"><img src="${AVATAR_IMAGE_URL}" alt="avatar"></div><div class="msg bot typing"><span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span></div>`;
