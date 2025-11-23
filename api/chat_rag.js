@@ -1,4 +1,4 @@
-//19h44 api/chat_rag.js
+// 20h19 - api/chat_rag.js
 import fs from "fs";
 import path from "path";
 
@@ -13,13 +13,20 @@ function loadKB() {
 }
 
 function retrieveRelevantEntries(kb, lang, query, topK = 4) {
-  const q = (query || "").toLowerCase().split(/\W+/).filter(Boolean);
-  const candidates = kb.filter(entry => entry.lang === lang);
+  const q = (query || "").toLowerCase().split(/\\W+/).filter(Boolean);
+  let candidates = kb.filter(entry => entry.lang === lang);
+  if (candidates.length === 0 && lang !== "fr") {
+    candidates = kb.filter(entry => entry.lang === "fr");
+  }
   const scored = candidates.map(entry => {
     const text = (entry.title + " " + entry.summary + " " + entry.raw).toLowerCase();
     let score = 0;
     for (const w of q) if (text.includes(w)) score += 1;
     return { entry, score };
+  });
+  scored.sort((a,b) => b.score - a.score);
+  return scored.filter(s => s.score > 0).slice(0, topK).map(s => s.entry);
+};
   });
   scored.sort((a,b) => b.score - a.score);
   return scored.filter(s=>s.score>0).slice(0, topK).map(s => s.entry);
@@ -36,49 +43,7 @@ export default async function handler(req, res) {
   try {
     const { user_message, visitor_lang } = req.body || {};
     if (!user_message) return res.status(400).json({ error: "Missing user_message" });
-
-    // helper serveur : détection simple si client ne fournit pas de langue fiable
-    function detectLangFromTextServer(text) {
-      if (!text || typeof text !== "string") return "fr";
-      const t = text.toLowerCase();
-      const stopwords = {
-        en: ["the","and","is","you","hello","please","thank","thanks","what","where","when","how"],
-        fr: ["le","la","les","et","est","vous","bonjour","svp","s'il","merci","quand","où","comment"],
-        es: ["el","la","y","es","usted","hola","por","favor","gracias","cuando","dónde","cómo"],
-        it: ["il","la","e","è","tu","ciao","per","favore","grazie","quando","dove","come"],
-        de: ["der","die","und","ist","du","hallo","bitte","danke","wann","wo","wie"]
-      };
-      const scores = {};
-      for (const l of Object.keys(stopwords)) scores[l] = 0;
-
-      const tokens = t.split(/\W+/).filter(Boolean);
-      for (const tok of tokens) {
-        for (const l of Object.keys(stopwords)) {
-          if (stopwords[l].includes(tok)) scores[l] += 1;
-        }
-      }
-
-      let best = "fr";
-      let bestScore = 0;
-      for (const l of Object.keys(scores)) {
-        if (scores[l] > bestScore) { bestScore = scores[l]; best = l; }
-      }
-      if (bestScore >= 1) return best;
-      return "fr";
-    }
-
-    // Normalize visitor_lang if provided
-    let lang = "fr";
-    if (visitor_lang && typeof visitor_lang === "string") {
-      const candidate = visitor_lang.slice(0,2).toLowerCase();
-      if (["en","fr","es","it","de"].includes(candidate)) lang = candidate;
-    }
-
-    // If client didn't supply a reliable lang or explicitly passed "auto", detect from message content
-    if (!visitor_lang || visitor_lang === "auto") {
-      const auto = detectLangFromTextServer(user_message);
-      if (auto) lang = auto;
-    }
+    const lang = (visitor_lang || "fr").slice(0,2).toLowerCase();
 
     if (!process.env.OPENAI_API_KEY) {
       return res.status(500).json({ error: "Missing OPENAI_API_KEY" });
@@ -88,25 +53,13 @@ export default async function handler(req, res) {
 
     const kb = loadKB();
     const relevant = retrieveRelevantEntries(kb, lang, user_message, 4);
-// 🔥 Fallback: si aucune info trouvée dans la langue → utiliser le FR
-let finalRelevant = relevant;
-if (finalRelevant.length === 0 && lang !== "fr") {
-  finalRelevant = retrieveRelevantEntries(kb, "fr", user_message, 4);
-}
-
-// 🔥 Si toujours rien → message personnalisé
-if (finalRelevant.length === 0) {
-  return res.status(200).json({
-    reply: "Bonne question ! Contactez directement Sophia ou Laurent via le bouton WhatsApp ci-dessous :) Merci !"
-  });
-}
-
 
     let contextText = "";
-if (finalRelevant.length > 0) {
-  contextText = finalRelevant.map(r => `Source: ${r.title} — ${r.url}\nSummary: ${r.summary}`).join("\n\n");
-}
-
+    if (relevant.length > 0) {
+      contextText = relevant.map(r => `Source: ${r.title} — ${r.url}\nSummary: ${r.summary}`).join("\n\n");
+    } else {
+      contextText = "No relevant page found in KB for this query.";
+    }
 
     const messages = [
       { role: "system", content: SYSTEM_PROMPT },
