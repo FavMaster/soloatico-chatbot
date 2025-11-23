@@ -1,4 +1,4 @@
-//18h40 api/chat_rag.js
+//19h44 api/chat_rag.js
 import fs from "fs";
 import path from "path";
 
@@ -88,13 +88,25 @@ export default async function handler(req, res) {
 
     const kb = loadKB();
     const relevant = retrieveRelevantEntries(kb, lang, user_message, 4);
+// 🔥 Fallback: si aucune info trouvée dans la langue → utiliser le FR
+let finalRelevant = relevant;
+if (finalRelevant.length === 0 && lang !== "fr") {
+  finalRelevant = retrieveRelevantEntries(kb, "fr", user_message, 4);
+}
+
+// 🔥 Si toujours rien → message personnalisé
+if (finalRelevant.length === 0) {
+  return res.status(200).json({
+    reply: "Bonne question ! Contactez directement Sophia ou Laurent via le bouton WhatsApp ci-dessous :) Merci !"
+  });
+}
+
 
     let contextText = "";
-    if (relevant.length > 0) {
-      contextText = relevant.map(r => `Source: ${r.title} — ${r.url}\nSummary: ${r.summary}`).join("\n\n");
-    } else {
-      contextText = "No relevant page found in KB for this query.";
-    }
+if (finalRelevant.length > 0) {
+  contextText = finalRelevant.map(r => `Source: ${r.title} — ${r.url}\nSummary: ${r.summary}`).join("\n\n");
+}
+
 
     const messages = [
       { role: "system", content: SYSTEM_PROMPT },
