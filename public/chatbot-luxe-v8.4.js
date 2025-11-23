@@ -1,5 +1,5 @@
 /* ============================================================
-   SOLO'IA'TICO — LUXURY CONCIERGE CHATBOT (V8.4) - 18h40
+   SOLO'IA'TICO — LUXURY CONCIERGE CHATBOT (V8.4)
    - Header kept
    - Typing effect (typewriter)
    - WhatsApp luxury CTA + linkify
