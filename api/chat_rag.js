@@ -1,9 +1,8 @@
-// chat_rag ULTRA PRO - Multilingual RAG (FR base), auto-translation, synonyms, stemming, fallback FR
+// chat_rag ULTRA PRO v2 - strict language control, RAG FR base
 
 import fs from "fs";
 import path from "path";
 
-// Load KB (FR only recommended)
 const KB_PATH = path.join(process.cwd(), "kb", "full_kb_v6.json");
 let KB = null;
 
@@ -14,31 +13,27 @@ function loadKB() {
   return KB;
 }
 
-// Normalize accents & special chars
 function normalize(str) {
   return (str || "")
     .normalize("NFD")
-    .replace(/[̀-ͯ]/g, "")
+    .replace(/[̀-\u036f]/g, "")
     .replace(/ç/g, "c")
     .replace(/ñ/g, "n")
     .toLowerCase();
 }
 
-// Synonyms & semantic groups
 const synonymGroups = {
-  pool: ["piscine", "piscina", "pool", "zwembad", "solarium", "solarium", "terrasse", "terrassa", "rooftop"],
+  pool: ["piscine", "piscina", "pool", "zwembad", "solarium", "terrasse", "terrassa", "rooftop"],
   breakfast: ["petit dejeuner", "breakfast", "desayuno", "ontbijt"],
   boat: ["bateau", "barco", "llaut", "boat", "vaartuig"],
   suite: ["suite", "habitacion", "room", "kamer"],
   beach: ["plage", "playa", "beach", "strand"]
 };
 
-// Stemmer (simple root-based)
 function stem(word) {
   return normalize(word).slice(0, 5);
 }
 
-// Detect language
 function detectLangFromTextServer(text) {
   const t = normalize(text);
   const stopwords = {
@@ -61,7 +56,6 @@ function detectLangFromTextServer(text) {
   return Object.entries(scores).sort((a,b)=>b[1]-a[1])[0][0] || "fr";
 }
 
-// RAG ULTRA PRO
 function retrieveRelevantEntries(kb, query, topK = 4) {
   const q = normalize(query).split(/\W+/).filter(Boolean);
   const userRoots = q.map(stem);
@@ -70,13 +64,9 @@ function retrieveRelevantEntries(kb, query, topK = 4) {
     const text = normalize(entry.title + " " + entry.summary + " " + entry.raw);
     let score = 0;
 
-    // Direct match
     for (const w of q) if (text.includes(w)) score += 2;
-
-    // Stem match
     for (const r of userRoots) if (text.includes(r)) score += 3;
 
-    // Synonyms
     for (const key in synonymGroups) {
       for (const syn of synonymGroups[key]) {
         if (text.includes(normalize(syn))) score += 5;
@@ -87,7 +77,7 @@ function retrieveRelevantEntries(kb, query, topK = 4) {
   });
 
   scored.sort((a,b)=>b.score - a.score);
-  return scored.filter(s=>s.score>1).slice(0, topK).map(s=>s.entry);
+  return scored.filter(s => s.score > 1).slice(0, topK).map(s => s.entry);
 }
 
 export default async function handler(req, res) {
@@ -96,13 +86,12 @@ export default async function handler(req, res) {
   res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
   if (req.method === "OPTIONS") return res.status(200).end();
-  if (req.method !== "POST") return res.status(405).json({ error:"Method not allowed" });
+  if (req.method !== "POST") return res.status(405).json({ error: "Method not allowed" });
 
   try {
     const { user_message, visitor_lang } = req.body || {};
     if (!user_message) return res.status(400).json({ error:"Missing user_message" });
 
-    // Language detection
     let lang = "fr";
     if (visitor_lang && typeof visitor_lang === "string") {
       const c = visitor_lang.slice(0,2).toLowerCase();
@@ -131,10 +120,16 @@ export default async function handler(req, res) {
       .map(r=>`Source: ${r.title} — ${r.url}\nSummary: ${r.summary}`)
       .join("\n\n");
 
+    const langSystem = `IMPORTANT : Tu dois répondre strictement en langue '${lang}'. 
+Peu importe la langue de la KB (FR) ou la langue de l’utilisateur,
+la réponse finale doit être rédigée UNIQUEMENT en '${lang}'. 
+Ne jamais utiliser une autre langue.`
+
     const messages = [
-      { role:"system", content:SYSTEM_PROMPT },
+      { role:"system", content: SYSTEM_PROMPT },
+      { role:"system", content: langSystem },
       { role:"system", content:`Context (knowledge base):\n\n${contextText}` },
-      { role:"user", content:`[lang=${lang}] ${user_message}` }
+      { role:"user", content:user_message }
     ];
 
     const resp = await fetch("https://api.openai.com/v1/chat/completions",{
